@@ -1,5 +1,56 @@
 -----------------------------------------------Part-A-------------------------------------------------
+
+CREATE TABLE Artists (
+Artist_id INT PRIMARY KEY,
+Artist_name NVARCHAR(50)
+);
+CREATE TABLE Albums (
+Album_id INT PRIMARY KEY,
+Album_title NVARCHAR(50),
+Artist_id INT,
+Release_year INT,
+FOREIGN KEY (Artist_id) REFERENCES Artists(Artist_id)
+);
+CREATE TABLE Songs (
+Song_id INT PRIMARY KEY,
+Song_title NVARCHAR(50),
+Duration DECIMAL(4, 2),
+Genre NVARCHAR(50),
+Album_id INT,
+FOREIGN KEY (Album_id) REFERENCES Albums(Album_id)
+);
+
+
+-- Insert Data into Artists Table
+INSERT INTO Artists (Artist_id, Artist_name) VALUES
+(1, 'Aparshakti Khurana'),
+(2, 'Ed Sheeran'),
+(3, 'Shreya Ghoshal'),
+(4, 'Arijit Singh'),
+(5, 'Tanishk Bagchi');
+-- Insert Data into Albums Table
+INSERT INTO Albums (Album_id, Album_title, Artist_id, Release_year) VALUES (1007, 'Album7', 1, 2015),
+(1001, 'Album1', 1, 2019),
+(1002, 'Album2', 2, 2015),
+(1003, 'Album3', 3, 2018),
+(1004, 'Album4', 4, 2020),
+(1005, 'Album5', 2, 2020),
+(1006, 'Album6', 1, 2009);
+-- Insert Data into Songs Table
+INSERT INTO Songs (Song_id, Song_title, Duration, Genre, Album_id) VALUES
+(101, 'Zaroor', 2.55, 'Feel good', 1001),
+(102, 'Espresso', 4.10, 'Rhythmic', 1002),
+(103, 'Shayad', 3.20, 'Sad', 1003),
+(104, 'Roar', 4.05, 'Pop', 1002),
+(105, 'Everybody Talks', 3.35, 'Rhythmic', 1003),
+(106, 'Dwapara', 3.54, 'Dance', 1002),
+(107, 'Sa Re Ga Ma', 4.20, 'Rhythmic', 1004),
+(108, 'Tauba', 4.05, 'Rhythmic', 1005),
+(109, 'Perfect', 4.23, 'Pop', 1002),
+(110, 'Good Luck', 3.55, 'Rhythmic', 1004);
+
 --1. Retrieve a unique genre of songs.
+
 SELECT DISTINCT GENRE FROM SONGS;
 
 --2. Find top 2 albums released before 2010.
